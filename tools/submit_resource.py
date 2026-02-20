@@ -192,7 +192,7 @@ def find_category_section(html_content, category_id):
         return None, None
     
     # Find the section by ID
-    section_pattern = rf'<section[^>]+id="{section_id}"[^>]*>(.*?)</section>'
+    section_pattern = rf'<div[^>]+class="category-section"[^>]+id="{section_id}"[^>]*>(.*)</div>'
     match = re.search(section_pattern, html_content, re.DOTALL)
     
     if not match:
@@ -404,6 +404,7 @@ def main():
     
     # Find the last </a> before </section> to insert before
     section_content = content[start:end]
+
     last_card_end = section_content.rfind('</a>')
     
     if last_card_end == -1:
